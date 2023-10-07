@@ -97,7 +97,7 @@ function ArticlePage() {
             <div className="flex flex-col items-center justify-between md:flex-row">
               <div className="flex flex-row items-center">
                 <IoChevronBackCircleSharp
-                  className="mr-5 cursor-pointer text-3xl"
+                  className="md:mr-5 mr-1 cursor-pointer text-3xl"
                   onClick={() => {
                     router.back();
                   }}
@@ -106,7 +106,8 @@ function ArticlePage() {
                   {article?.title}
                 </p>
               </div>
-              <p className="text-center text-[10px] font-thin leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">
+            </div>
+            <div className=" flex flex-row items-center md:justify-end justify-center">
                 {user.name !== "" && article?.author === user?.name ? (
                   <span className="flex flex-row items-center">
                     <ButtonLink
@@ -114,7 +115,7 @@ function ArticlePage() {
                       href={`/edit/${id}`}
                       variant="light"
                     >
-                      <AiFillEdit className="mr-3 cursor-pointer text-2xl text-yellow-500" />
+                      <AiFillEdit className="cursor-pointer text-2xl text-yellow-500" />
                     </ButtonLink>
                     <AiFillDelete
                       onClick={() => promtDelete(id)}
@@ -122,18 +123,21 @@ function ArticlePage() {
                     />
                   </span>
                 ) : (
-                  article?.author
+                  <div className="">
+                    <p className="text-center text-[10px] font-thin leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.author}</p>
+                    <p className="text-center text-[10px] font-thin leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.createdAt}</p>
+                   
+                  </div>
+                  
                 )}
-                <p>{article?.createdAt}</p>
-              </p>
-            </div>
-
+               
+              </div>
             {loading ? (
               <div className="flex h-12 w-full flex-col items-center justify-center">
                 <ImSpinner2 className="animate-spin" />{" "}
               </div>
             ) : (
-              <span className="m-3 text-justify font-primary text-[10px] font-thin leading-[12px] text-[#A1A1A1] md:text-[15px] md:leading-[18px]">
+              <span className="m-3 text-justify font-primary text-[14px] font-thin leading-[16px] text-black md:text-[15px] md:leading-[18px]">
                 {article?.content &&
                   parse(article?.content.toString() as string)}
               </span>
