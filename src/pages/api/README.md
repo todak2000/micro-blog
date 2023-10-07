@@ -11,13 +11,13 @@ ONCE AGAIN ensure that you have a Firebase account and a project with Firestore 
 Provided you follow the instructions [here](README.md): `README.md`. you have nothing else to do
 
 ## Features Endpoints
+
 This project implements the following features endpoints:
 
-<!-- Google Authentication: 
+<!-- Google Authentication:
 CRUD Functionality for Blog Posts: Users can create, read, update, and delete blog posts. Each post has a title, content, and a created/updated timestamp. The handleNewArticle, handleEditArticle, and handleDeleteArticle functions are used for these operations.
 The `handleSignInAuth` function is used to sign in a registered user.
 . -->
-
 
 ### Google Authentication (Signup/SignIn)
 
@@ -57,7 +57,7 @@ An email is sent to the registered account for verification and a promise that r
 
 **Description:**
 
-Create : Authenticated Users can create articles. Each article has a title, content, category and a created/updated timestamp. 
+Create : Authenticated Users can create articles. Each article has a title, content, category and a created/updated timestamp.
 
 **Parameters:**
 
@@ -104,12 +104,11 @@ A promise that resolves with the following object:
 
 Read : Any Users can read available articles. This was implemented using React Query. A customized react query hook `useArticles` was used to fetch articles from Firebase and update the Redux `articles` state array. This is then rendered/mapped into the `Article Card Component` here - `src/components/card/ArticleCard.tsx` accordingly.
 
-
 **handleEditArticle()**
 
 **Description:**
 
-Update : Authenticated Users can update their own articles. Any of these article items can be edited - title, content, and category. 
+Update : Authenticated Users can update their own articles. Any of these article items can be edited - title, content, and category.
 
 **Parameters:**
 
@@ -144,7 +143,7 @@ A promise that resolves with the following object:
 
 **Description:**
 
-Delete : Authenticated Users can delete their own articles. 
+Delete : Authenticated Users can delete their own articles.
 
 **Parameters:**
 
@@ -172,7 +171,7 @@ A promise that resolves with the following object:
 
 **Description:**
 
-User Sign Out: . The  function is used for this operation
+User Sign Out: . The function is used for this operation
 The `handleSignOut` endpoint allow Users can sign out from their account
 
 **Parameters:**
@@ -189,7 +188,6 @@ A promise that resolves with the following object:
   }
 ```
 
-
 **Status:**
 
 The status of the responses. Possible values are:
@@ -197,15 +195,17 @@ The status of the responses. Possible values are:
 - 200 - successfull.
 - 405 - failed request.
 
-
 ## Technologies Used
+
 This project uses the following technologies:
 
 - 🎉 Firebase - A platform that provides various backend services such as authentication, database, storage, etc.
 - 🎉 React Query - A library for fetching, caching, and updating data in React applications.
 
 ## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Author
+
 [Daniel Olagunju](https://github.com/todak2000)

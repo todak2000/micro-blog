@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 
 import Layout from "@/components/layout/Layout";
@@ -147,4 +148,4 @@ function ArticlePage() {
     </Layout>
   );
 }
-export default React.memo(ArticlePage)
+export default React.memo(ArticlePage);

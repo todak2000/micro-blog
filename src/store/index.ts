@@ -1,65 +1,68 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { initialArticlesObject, initialUser } from '@/constant'
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { initialArticlesObject, initialUser } from "@/constant";
 
 // Create a slice for articles
 const articlesSlice = createSlice({
-  name: 'articles',
+  name: "articles",
   initialState: initialArticlesObject,
   reducers: {
-    getArticles: (state: any, action:any) => {
-      return action.payload
+    getArticles: (state: any, action: any) => {
+      return action.payload;
     },
-    addArticles: (state: any, action:any) => {
-      state.data.push(action?.payload)
+    addArticles: (state: any, action: any) => {
+      state.data.push(action?.payload);
     },
-    removeArticle: (state: any, action:any) => {
-      state.data = state.data.filter((d: any) => d?.id !== action?.payload as string)
+    removeArticle: (state: any, action: any) => {
+      state.data = state.data.filter(
+        (d: any) => d?.id !== (action?.payload as string)
+      );
     },
   },
-})
+});
 
 // Create a slice for page
 const pageSlice = createSlice({
-  name: 'page',
+  name: "page",
   initialState: 1,
   reducers: {
     nextPage: (state) => state + 1,
     prevPage: (state) => state - 1,
   },
-})
+});
 
 // Create a slice for user
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: initialUser,
   reducers: {
-    setUser: (state: any, action:any) => {
-      return action.payload
+    setUser: (state: any, action: any) => {
+      return action.payload;
     },
     clearUser: () => {
-      return initialUser
+      return initialUser;
     },
   },
-})
+});
 
 // Create a slice for searchQuery
 const searchQuerySlice = createSlice({
-  name: 'searchQuery',
-  initialState: '',
+  name: "searchQuery",
+  initialState: "",
   reducers: {
-    updateSearchQuery: (state: any, action:any) => {
-      return action.payload
+    updateSearchQuery: (state: any, action: any) => {
+      return action.payload;
     },
     clearSearchQuery: () => {
-      return ''
+      return "";
     },
   },
-})
+});
 
-export const { getArticles, addArticles, removeArticle } = articlesSlice.actions
-export const { nextPage, prevPage } = pageSlice.actions
-export const { setUser, clearUser } = userSlice.actions
-export const { updateSearchQuery, clearSearchQuery } = searchQuerySlice.actions
+export const { getArticles, addArticles, removeArticle } =
+  articlesSlice.actions;
+export const { nextPage, prevPage } = pageSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
+export const { updateSearchQuery, clearSearchQuery } = searchQuerySlice.actions;
 
 // Create a Redux store that includes the posts slice
 const store = configureStore({
@@ -69,8 +72,8 @@ const store = configureStore({
     user: userSlice.reducer,
     searchQuery: searchQuerySlice.reducer,
   },
-})
-export default store
+});
+export default store;
 // import { configureStore, createSlice } from '@reduxjs/toolkit'
 // import { initialArticlesObject, initialUser } from '@/constant'
 
@@ -90,10 +93,8 @@ export default store
 //       // other reducers...
 //     },
 //   })
-  
+
 // export const { getArticles, addArticles, removeArticle } = articlesSlice.actions
-
-
 
 // const pageSlice = createSlice({
 //     name: 'page',
@@ -103,7 +104,7 @@ export default store
 //       prevPage: (state:any) => state - 1,
 //     },
 //   })
-  
+
 //   export const { nextPage, prevPage } = pageSlice.actions
 
 // // Create a slice for user
@@ -119,9 +120,8 @@ export default store
 //       }
 //     },
 //   })
-  
-//   export const { setUser, clearUser } = userSlice.actions
 
+//   export const { setUser, clearUser } = userSlice.actions
 
 // // Create a slice for searchQuery
 // const searchQuerySlice = createSlice({
