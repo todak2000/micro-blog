@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-
 import Layout from "@/components/layout/Layout";
-
 import InputComponent from "@/components/input/Input";
 import Seo from "@/components/Seo";
 import { FormButtonText, formArr, EditArticleText } from "@/constant";
@@ -15,9 +13,6 @@ import Swal from "sweetalert2";
 import { MdOutlineSend } from "react-icons/md";
 import { useArticle } from "@/utils/hook";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
 import { handleEditArticle } from "../api";
 
 type ArticleProps = {

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://tsnext-tw.thcl.dev
+Host: https://micro-blog-khaki.vercel.app
 
 # Sitemaps
-Sitemap: https://tsnext-tw.thcl.dev/sitemap.xml
+Sitemap: https://micro-blog-khaki.vercel.app/sitemap.xml

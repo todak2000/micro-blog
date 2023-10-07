@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Layout from "@/components/layout/Layout";
 import { formArr, CreateArticleText, FormButtonText } from "@/constant";
 import Swal from "sweetalert2";
@@ -14,9 +13,6 @@ import { addArticles } from "@/store";
 import InputComponent from "@/components/input/Input";
 import Button from "@/components/buttons/Button";
 import { MdOutlineSend } from "react-icons/md";
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
 
 function CreateArticlePage() {
   const router = useRouter();

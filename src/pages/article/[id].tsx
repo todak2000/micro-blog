@@ -18,9 +18,6 @@ import Footer from "../components/Footer";
 import { useArticles } from "@/utils/hook";
 import { ImSpinner2 } from "react-icons/im";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
 
 type ArticleProps = {
   id: string;

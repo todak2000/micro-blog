@@ -22,7 +22,6 @@
     "@reduxjs/toolkit": "^1.9.7",
     "clsx": "^1.2.1",
     "firebase": "^10.4.0",
-    "formik": "^2.4.5",
     "html-react-parser": "^4.2.2",
     "next": "^13.1.6",
     "react": "^18.2.0",
