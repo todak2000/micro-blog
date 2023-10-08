@@ -1,5 +1,5 @@
 export const LandingPageHeader = "Simple Blogging Platform";
-export const SocialMediaUrl = "https://micro-blog-khaki.vercel.app/article";
+export const SocialMediaUrl = "https://micro-blog-khaki.vercel.app/share";
 export const LandingPageText =
   "A simple blogging platform using Next.js, React, TypeScript, Redux, React Query, TailwindCss. The platform is user-friendly, and the code well-organized and documented.";
 export const LandingPageLinkText = "See the repository";
