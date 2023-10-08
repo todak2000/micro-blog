@@ -18,6 +18,7 @@ https://micro-blog-khaki.vercel.app/
 - ✨ Firebase
 - ✨ Redux
 - ✨ React Query
+- ✨ React-Share
 - ✨ React-Quill textEditor
 - 🃏 Jest — Configured for unit testing
 
@@ -36,6 +37,7 @@ This project implements the following features:
  - Comments functionality where users can comment on articles.
  - Authenticated users can like or unlike an article. While unauthenicated users can view likes only
  - Users can see number of views an article has
+ - Users can share artilce on Social Media (Facebook, Twitter and Whatsapp)
 
 ## Getting Started
 

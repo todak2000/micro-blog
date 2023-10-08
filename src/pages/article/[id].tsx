@@ -6,6 +6,7 @@ import CommentCard from "@/components/card/CommentCard";
 import Swal from "sweetalert2";
 import Seo from "@/components/Seo";
 import { getArticles } from "@/store";
+import {FaShareAlt} from 'react-icons/fa'
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineFundView } from "react-icons/ai";
@@ -13,6 +14,7 @@ import { BiComment } from "react-icons/bi";
 import parse from "html-react-parser";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
+import Share from "@/components/socialMedia/Share";
 import {
   handleDeleteArticle,
   handleViewArticle,
@@ -52,12 +54,17 @@ function ArticlePage() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
+  const [isShare, setIsShare] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleProps>();
   const articles = useSelector((state: any) => state.articles);
   const user = useSelector((state: any) => state.user);
   const { data, isLoading, isError, error } = useArticles();
 
   const { id } = router.query;
+
+  const ToggleShare =()=>{
+    setIsShare(!isShare)
+  }
   const promtDelete = (id: any) => {
     Swal.fire({
       title: "Do you want to Delete this Article",
@@ -197,6 +204,8 @@ function ArticlePage() {
                       <span className=" ml-1 text-[10px] font-bold text-gray-400">
                         {article?.views || 0}
                       </span>
+                      <FaShareAlt onClick={ToggleShare} className="ml-4 text-xl cursor-pointer text-gray-300" />
+   
                       {article?.likes?.includes(user.uid) ? (
                         <AiFillLike
                           onClick={() => {
@@ -212,7 +221,7 @@ function ArticlePage() {
                           className="ml-4 cursor-pointer text-2xl text-gray-300"
                         />
                       )}
-
+                    
                       <span className=" ml-1 text-[10px] font-bold text-gray-400">
                         {article?.likes?.length || 0}
                       </span>
@@ -234,6 +243,8 @@ function ArticlePage() {
                         <span className=" ml-1 text-[10px] font-bold text-gray-400">
                           {article?.views || 0}
                         </span>
+                        <FaShareAlt onClick={ToggleShare} className="ml-4 text-xl cursor-pointer text-gray-300" />
+                        
                         {user.name !== "" ? (
                           <>
                             {article?.likes?.includes(user.uid) ? (
@@ -279,6 +290,11 @@ function ArticlePage() {
               </div>
             </>
           )}
+          {isShare &&
+          <div className="bg-gray-200 absolute top-[45%] right-0 grid grid-rows-3 gap-4 p-6 rounded-l-lg">
+          <Share title={article?.title as string} articleId={id as string} />
+        </div>
+          }
         </section>
         <Footer />
       </main>
