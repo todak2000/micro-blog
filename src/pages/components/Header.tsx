@@ -71,18 +71,31 @@ const Header: React.FC = () => {
     push(link);
   };
 
-  const handleOut = async () => {
-    const out: any = await handleSignOut();
-    if (out.statusCode === 200) {
-      dispatch(clearUser());
-      handleLink("/");
-      Swal.fire({
-        title: "Success!",
-        text: "Logout successfully!",
-        icon: "success",
-      });
-    }
+  const handleOut = () => {
+    Swal.fire({
+      title: "Are you sure you want to signout?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const out: any = await handleSignOut();
+        if (out.statusCode === 200) {
+          dispatch(clearUser());
+          Swal.fire({
+            title: "Success!",
+            text: "Logout successfully!",
+            icon: "success",
+          });
+        }
+        else {
+          Swal.fire("Oops an error occured", "", "info");
+        }
+      }
+    });
   };
+
+
   const handleGoogle = async () => {
     setLoading(true);
     const auth = await handleGoogleAuth();

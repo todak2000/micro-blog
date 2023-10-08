@@ -153,7 +153,7 @@ function ArticlePage() {
                   parse(article?.content.toString() as string)}
               </span>
             )}
-            {user.name !== "" && article?.author === user?.name ?
+            {user.name !== "" ?
             <CommentCard />:
             <p className='bg-red-100 my-3 text-center rounded-sm py-2'>{NoCommentText}</p>
             }
