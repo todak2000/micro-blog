@@ -2,7 +2,7 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { provider, auth, db } from "@/firebase";
 import { generateRandomCharacters } from "@/utils";
 import { dateFormaterString } from "@/utils";
-import { doc, setDoc, deleteDoc } from "@firebase/firestore";
+import { doc, setDoc, deleteDoc, arrayUnion } from "@firebase/firestore";
 
 // Google Auth API
 export const handleGoogleAuth = async (): Promise<
@@ -29,7 +29,6 @@ export const handleGoogleAuth = async (): Promise<
       uid: userCredentials.user.uid,
     };
   } catch (err: any) {
-    console.log(err);
     return {
       statusCode: 405,
       message: err?.message,
@@ -70,6 +69,7 @@ export const handleNewArticle = async (
       category: data.category,
       author: data.author,
       authorId: data.authorId,
+      comments: [],
     };
     const res = await setDoc(articleRef, newArticle, { merge: true });
     return {
@@ -77,7 +77,6 @@ export const handleNewArticle = async (
       article: newArticle,
     };
   } catch (err: any) {
-    console.log(err);
     return {
       statusCode: 405,
       message: err?.message,
@@ -111,7 +110,6 @@ export const handleEditArticle = async (
       statusCode: 200,
     };
   } catch (err: any) {
-    console.log(err);
     return {
       statusCode: 405,
       message: err?.message,
@@ -137,11 +135,36 @@ export const handleDeleteArticle = async (
       message: "Success!",
     };
   } catch (err: any) {
-    console.log(err);
     return {
       statusCode: 405,
       message: err?.message,
     };
+  }
+};
+
+// Add Comment to an Article
+export const handleAddComment = async (
+  data: any
+): Promise<{ statusCode: number; message: string } | any> => {
+  try {
+    const commentRef = doc(db, "Articles", data.id);
+    await setDoc(
+      commentRef,
+      {
+        comments: arrayUnion({
+          sender: data.sender,
+          senderId: data.senderId,
+          senderPhoto: data.senderPhoto,
+          comment: data.comment,
+          timestamp: dateFormaterString(new Date().toString()),
+        }),
+      },
+      { merge: true }
+    );
+
+    return { statusCode: 200, message: "Comment added successfully!" };
+  } catch (error) {
+    return { statusCode: 501, message: "Oops! an error occurred" };
   }
 };
 
@@ -155,13 +178,11 @@ export const handleSignOut = async (): Promise<
 > => {
   try {
     const logout = await signOut(auth);
-    console.log(logout);
     return {
       statusCode: 200,
       message: "Success!",
     };
   } catch (error: any) {
-    console.log(error);
     return {
       statusCode: 405,
       message: error?.message,

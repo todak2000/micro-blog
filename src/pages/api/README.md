@@ -13,12 +13,6 @@ Provided you follow the instructions [here](README.md): `README.md`. you have no
 ## Features Endpoints
 
 This project implements the following features endpoints:
-
-<!-- Google Authentication:
-CRUD Functionality for Blog Posts: Users can create, read, update, and delete blog posts. Each post has a title, content, and a created/updated timestamp. The handleNewArticle, handleEditArticle, and handleDeleteArticle functions are used for these operations.
-The `handleSignInAuth` function is used to sign in a registered user.
-. -->
-
 ### Google Authentication (Signup/SignIn)
 
 **handleGoogleAuth()**
@@ -98,7 +92,7 @@ A promise that resolves with the following object:
   }
 ```
 
-**handleNewArticle()**
+**useArticles()**
 
 **Description:**
 
@@ -136,6 +130,36 @@ A promise that resolves with the following object:
   {
       statusCode: number;
       message: string;
+  }
+```
+
+## Add Comment to Article
+
+**handleAddComment()**
+
+**Description:**
+
+Update : The `handleAddComment` endpoint allow Authenticated users to comment on an article - own or otherwise. 
+
+**Parameters:**
+
+```
+{
+    id:string, // article ID
+    sender: string,
+    senderId: string,
+    senderPhoto: string,
+    comment: string,
+}
+```
+**Returns:**
+
+A promise that resolves with the following object:
+
+```
+  {
+    statusCode: number;
+    message: string;
   }
 ```
 

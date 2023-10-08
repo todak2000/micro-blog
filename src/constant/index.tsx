@@ -17,6 +17,10 @@ export const SignInText = "Sign in with Google";
 export const SignInTextMobile = "Sign in";
 export const SignOutText = "Sign out";
 export const CardButtonLinkText = "Read full Article";
+export const CommentButtonText ="Comment";
+export const NotFoundText = "Page Not Found";
+export const BackText = "Back to Home";
+export const NoCommentText = "If you would like to comment, kindly login";
 export const initialArticles = [
   {
     id: "1",

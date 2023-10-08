@@ -54,7 +54,7 @@ const Header: React.FC = () => {
         dispatch(setUser(userData as any));
       } else {
         dispatch(clearUser());
-        if (!pathname.includes("/article/")) {
+        if (pathname.includes("/edit/") || pathname.includes("/create/")) {
           handleLink("/");
         }
       }

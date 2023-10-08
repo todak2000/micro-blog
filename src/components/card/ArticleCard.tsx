@@ -19,6 +19,7 @@ type CardItem = {
   createdAt?: string;
   category: string;
   author: string;
+  comments?: any[];
   authorId?: string;
 };
 
@@ -29,6 +30,7 @@ const ArticleCard = ({
   category,
   author,
   createdAt,
+  comments,
   authorId,
 }: CardItem) => {
   const user = useSelector((state: any) => state.user);
@@ -66,34 +68,32 @@ const ArticleCard = ({
         <FaRegImage className="text-6xl" />
       </div>
       <div className="flex flex-row items-center justify-between p-3">
-        <p className="header-text text-[10px] font-thin leading-[12px] md:text-[14px] md:leading-[18px]">
-          {category || "Marketing"}
+        <p className="header-text text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[18px]">
+          {author}
         </p>
-        <p className="header-text text-[10px] font-thin leading-[12px] md:text-[14px] md:leading-[16px]">
+        <p className="header-text text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[16px]">
           {author === user.name ? (
-            <span className="flex flex-row items-center">
+            <span className="flex flex-row items-center justify-between">
               <ButtonLink
-                className="mx-3 cursor-pointer border border-transparent"
+                className="mr-6 md:mr-0 cursor-pointer border border-transparent"
                 href={`/edit/${id}`}
                 variant="light"
               >
-                <AiFillEdit className="mr-3 cursor-pointer text-2xl text-yellow-500" />
+                <AiFillEdit className=" cursor-pointer text-2xl text-yellow-500" />
               </ButtonLink>
               <AiFillDelete
                 onClick={() => promtDelete(id)}
-                className="ml-3 cursor-pointer text-2xl text-red-500"
+                className="cursor-pointer text-2xl text-red-500"
               />
             </span>
-          ) : (
-            author
-          )}
+          ) : null }
         </p>
       </div>
       <p className="px-3 text-[12px] font-black leading-[12px] md:text-[16px] md:leading-[7px]">
         {getFirst150Chars(title, 20)}
       </p>
 
-      <p className="m-3 font-primary text-[10px] font-thin leading-[12px] text-[#A1A1A1] md:text-[12px] md:leading-[14px]">
+      <p className="m-3 font-primary text-[10px] font-normal leading-[12px] text-[#A1A1A1] md:text-[12px] md:leading-[14px]">
         {content && parse(getFirst150Chars(content))}
       </p>
       <ButtonLink
@@ -104,7 +104,7 @@ const ArticleCard = ({
         {CardButtonLinkText}
       </ButtonLink>
       <p className="z-100 absolute top-[1%] z-50 m-3 font-primary text-[8px] font-thin leading-[10px] text-black md:text-[10px] md:leading-[12px]">
-        {new Date().toDateString()}
+        {createdAt}
       </p>
     </div>
   );

@@ -1,11 +1,12 @@
 # Simple Blogging Platform
 
-This is the offical documentation for a simple blogging platform project built using Next.js, React, TypeScript, and other technologies. The project aims to create a user-friendly website where users can create, read, update, and delete blog posts, as well as search for posts by title.
+This is the offical documentation for a simple blogging platform project built using Next.js, React, TypeScript, and other technologies. The project aims to create a user-friendly website where users can create, read, update, and delete blog articles, as well as search for articles by title.
 
-![Image title](public/images/simple-blog.png)
+![Image simple-blog-one](public/images/simple-blog.png)
+![Image simple-blog-one](public/images/simple-blog-2.png)
 
 ## URL
-
+https://micro-blog-khaki.vercel.app/
 ## Built with
 
 - ⚡️ Next.js 13
@@ -22,17 +23,14 @@ This is the offical documentation for a simple blogging platform project built u
 
 This project implements the following features:
 
-- 💎 CRUD Functionality for Blog Posts: Users/Authors can create, read, update, and delete blog posts. Each post has a title, content, and a created/updated timestamp. A simple text editor is used for creating and editing posts. Only an author can perform CRUD operations except for the R- Read operation which is permissible for every User.
+- 💎 CRUD Functionality for Blog Articles: Users/Authors can create, read, update, and delete blog articles. Each article has a title, content, and a created/updated timestamp. A simple text editor is used for creating and editing articles. Only an author can perform CRUD operations except for the R- Read operation which is permissible for every User.
 - 💎 Users can Onoboard the Application using Google Social Authentication as facilitated by Firebase.
-- 💎 List and Single Post View: The homepage lists all blog posts with pagination. A single post view page displays the full content of a post
-- 💎 Search Functionality: Users can search for posts by title using a search bar.
+- 💎 List and Single Article View: The homepage lists all blog articles with pagination. A single article view page displays the full content of an article
+- 💎 Search Functionality: Users can search for Articles by title using a search bar.
 - 💎 API Integration: React Query is used for data fetching, caching, and state management. Firebase Firestore is used as a backend service for data storage and retrieval.
-- 💎 State Management: React Redux is used as a state management library to manage the application’s state (e.g., current user, current post, etc.).
+- 💎 State Management: React Redux is used as a state management library to manage the application’s state (e.g., current user, current articles, etc.).
 - 💎 Basic Styling: Tailwind CSS is used as a UI framework to style the components. The UI is clean and responsive.
-
-// Todo
-
-- 💎Bonus Features: Comments functionality where users can comment on posts. Emotion is used as a CSS-in-JS library.
+- 💎Bonus Features: Comments functionality where users can comment on articles. 
 
 ## Getting Started
 

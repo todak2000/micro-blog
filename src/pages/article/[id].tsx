@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from "react";
 
 import Layout from "@/components/layout/Layout";
-
+import CommentCard from "@/components/card/CommentCard";
 import Swal from "sweetalert2";
 import Seo from "@/components/Seo";
 import { getArticles } from "@/store";
+import {BiComment} from 'react-icons/bi'
 import parse from "html-react-parser";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +19,8 @@ import Footer from "../components/Footer";
 import { useArticles } from "@/utils/hook";
 import { ImSpinner2 } from "react-icons/im";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
+import FeedbackCard from "@/components/card/FeedbackCard";
+import { NoCommentText } from "@/constant";
 
 type ArticleProps = {
   id: string;
@@ -26,6 +29,7 @@ type ArticleProps = {
   createdAt: string;
   category: string;
   author: string;
+  comments?: any[]
 };
 
 function ArticlePage() {
@@ -84,7 +88,7 @@ function ArticlePage() {
     } else {
       loadData();
     }
-  }, [data]);
+  }, [data, articles]);
 
   return (
     <Layout>
@@ -102,7 +106,7 @@ function ArticlePage() {
                     router.back();
                   }}
                 />
-                <p className="px-3 text-[14px] font-black leading-[16px] md:text-[25px] md:leading-[26px]">
+                <p className="px-3 text-[14px] font-black  leading-[16px] md:text-[25px] md:leading-[26px]">
                   {article?.title}
                 </p>
               </div>
@@ -119,13 +123,20 @@ function ArticlePage() {
                     </ButtonLink>
                     <AiFillDelete
                       onClick={() => promtDelete(id)}
-                      className="ml-3 cursor-pointer text-2xl text-red-500"
+                      className="mx-3 cursor-pointer text-2xl text-red-500"
                     />
+                    <BiComment className="ml-4 text-2xl text-gray-300"/>
+                    <span className="ml-[-10px] mt-[-15px] bg-gray-300 text-[10px] font-bold text-gray-400 h-[20px] w-[20px] flex flex-col justify-center items-center rounded-full">{article?.comments?.length || 0}</span>
+                    
+                    
                   </span>
                 ) : (
-                  <div className="">
-                    <p className="text-center text-[10px] font-thin leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.author}</p>
-                    <p className="text-center text-[10px] font-thin leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.createdAt}</p>
+                  <div className="mt-3">
+                    <p className="text-center text-[10px] font-normal leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.author}</p>
+                    <p className="text-center text-[10px] font-normal leading-[12px] md:text-right md:text-[14px] md:leading-[16px]">{article?.createdAt}</p>
+                    <p className="flex flex-row items-center justify-center md:justify-end mt-3"><BiComment className="ml-3 text-2xl text-gray-300"/>
+                    <span className="ml-[-10px] mt-[-15px] bg-gray-300 text-[10px] font-bold text-grap-400 h-[20px] w-[20px] flex flex-col justify-center items-center rounded-full">{article?.comments?.length || 0}</span>
+                    </p>
                    
                   </div>
                   
@@ -137,11 +148,17 @@ function ArticlePage() {
                 <ImSpinner2 className="animate-spin" />{" "}
               </div>
             ) : (
-              <span className="m-3 text-justify font-primary text-[14px] font-thin leading-[16px] text-black md:text-[15px] md:leading-[18px]">
+              <span className="m-3 text-justify font-primary text-[14px] font-normal leading-[16px] text-black md:text-[15px] md:leading-[18px]">
                 {article?.content &&
                   parse(article?.content.toString() as string)}
               </span>
             )}
+            {user.name !== "" && article?.author === user?.name ?
+            <CommentCard />:
+            <p className='bg-red-100 my-3 text-center rounded-sm py-2'>{NoCommentText}</p>
+            }
+            {article?.comments && article?.comments?.length > 0 &&
+            <FeedbackCard comments={article?.comments}/>}
           </div>
         </section>
         <Footer />

@@ -93,3 +93,33 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="search"]:focus,
+[type="checkbox"]:focus,
+[type="radio"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  --tw-ring-color: transparent;
+  border-color: transparent;
+}
+input:focus,
+textarea:focus {
+  outline: none !important;
+  outline-offset: 0 !important;
+  --tw-ring-offset-width: none !important;
+}
+
+li:focus-visible {
+  outline: none;
+}
+
+li:hover {
+  cursor: pointer;
+}
