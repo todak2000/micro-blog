@@ -39,32 +39,3 @@ export const generateRandomCharacters = (length = 24) => {
   }
   return randomCharacters.join("");
 };
-
-// export const getFirst150Chars = (text: string, length: number = 150): string => {
-//     if (text.length <= length) {
-//       return text;
-//     } else {
-//       return text.substring(0, length) + "...";
-//     }
-// }
-// export const dateFormaterString = (dateString: string) => {
-//     const formattedDate = new Date(dateString).toLocaleDateString("en-US", {
-//         month: "short",
-//         day: "numeric",
-//         year: "numeric",
-//         hour: "numeric",
-//         minute: "numeric",
-//     });
-//     return formattedDate;
-// };
-
-// export const generateRandomCharacters = (length = 24) => {
-//     const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-//     const randomCharacters = [];
-//     for (let i = 0; i < length; i++) {
-//       const randomIndex = Math.floor(Math.random() * characters.length);
-//       const randomCharacter = characters[randomIndex];
-//       randomCharacters.push(randomCharacter);
-//     }
-//     return randomCharacters.join('');
-//   }

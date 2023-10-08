@@ -1,4 +1,3 @@
-// Import React and other dependencies
 import React from "react";
 import { getFirst150Chars } from "@/utils";
 import { FaRegImage } from "react-icons/fa";

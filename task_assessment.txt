@@ -1,0 +1,69 @@
+React Frontend take-home assessment 
+
+Simple Blogging Platform
+
+
+Objective:
+Create a simple blogging platform using Next.js, React, TypeScript, a state management library of your choice (e.g., Redux or Zustand), React Query, or an alternate you prefer, any UI framework or library. The platform should be user-friendly, and the code should be well-organized and documented.
+
+Features:
+CRUD Functionality for Blog Posts:
+
+Create, Read, Update, and Delete blog posts.
+Each post should have a title, content, and a created/updated timestamp.
+Use a simple text editor for creating and editing posts.
+List and Single Post View:
+
+A homepage that lists all blog posts with pagination.
+A single post view page that displays the full content of a post.
+
+Search Functionality:
+Users should be able to search for posts by title.
+
+
+API Integration:
+
+Use React Query for data fetching, caching, and state management.
+Use a simple RESTful API for data storage and retrieval or a service like Firebase. 
+You can as well use fake api service such as https://dummyapi.io or any other one you prefer 
+
+
+State Management:
+
+Use a state management library to manage the application's state (e.g., current user, current post, etc.).
+Basic Styling:
+
+The UI should be clean and responsive.
+
+
+Deployment:
+
+Deploy the website to a service like Vercel or Netlify.
+
+
+Evaluation Criteria:
+Code Quality:
+
+Code should be well-organized, easy to read, and follow best practices for React, Next.js, TypeScript, and the chosen state management library.
+
+
+Functionality:
+
+All the mentioned features should be implemented and working as expected.
+Responsiveness:
+
+The UI should be responsive and should provide a good user experience on both desktop and mobile.
+Documentation:
+
+Code should be well-commented and the repository should include a README with setup instructions.
+Bonus:
+Implement comments functionality where users can comment on posts.
+Use of a CSS-in-JS library like Styled Components or Emotion.
+
+Duration:
+The task should be completed within 3-5 days 
+
+Submission 
+Once completed kindly submit your assessment using this URL
+
+https://forms.gle/kd23teq6EMvF4KM28

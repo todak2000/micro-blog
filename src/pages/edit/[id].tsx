@@ -79,7 +79,6 @@ export default function ArticlePage() {
         icon: "error",
       });
     }
-    //
   };
   const handleChange = (
     event:
