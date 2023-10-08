@@ -291,7 +291,7 @@ function ArticlePage() {
             </>
           )}
           {isShare &&
-          <div className="bg-gray-200 absolute top-[45%] right-0 grid grid-rows-3 gap-4 p-6 rounded-l-lg">
+          <div className="bg-green-100 absolute top-[45%] right-0 grid grid-rows-3 gap-4 p-6 rounded-l-lg">
           <Share title={article?.title as string} articleId={id as string} />
         </div>
           }

@@ -1,12 +1,10 @@
 import React from "react";
 import {
   FacebookShareButton,
-  FacebookIcon,
   TwitterShareButton,
-  TwitterIcon,
   WhatsappShareButton,
-  WhatsappIcon,
 } from "react-share";
+import {FaFacebook, FaTwitter, FaWhatsapp} from 'react-icons/fa'
 import { SocialMediaUrl } from "@/constant";
 
 interface Props {
@@ -18,13 +16,13 @@ const SocialMediaShare: React.FC<Props> = ({ title, articleId }) => {
   return (
     <>
       <FacebookShareButton url={`${SocialMediaUrl}/${articleId}`} title={title} quote={title}>
-        <FacebookIcon size={25} round />
+        <FaFacebook size={25} color="#4267B2"/>
       </FacebookShareButton>
       <WhatsappShareButton url={`${SocialMediaUrl}/${articleId}`} separator=":: ">
-        <WhatsappIcon size={25} round />
+        <FaWhatsapp size={25} color="#25D366"/>
       </WhatsappShareButton>
       <TwitterShareButton url={`${SocialMediaUrl}/${articleId}`} title={title}>
-        <TwitterIcon size={25} round />
+        <FaTwitter size={25} color="#1D9BF0"/>
       </TwitterShareButton>
     </>
   );
