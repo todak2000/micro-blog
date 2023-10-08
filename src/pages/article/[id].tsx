@@ -202,7 +202,7 @@ function ArticlePage() {
                           onClick={() => {
                             ToggleLike(0);
                           }}
-                          className="ml-4 cursor-pointer text-2xl text-red-500"
+                          className="ml-4 cursor-pointer text-2xl text-green-700"
                         />
                       ) : (
                         <BiLike
@@ -241,7 +241,7 @@ function ArticlePage() {
                                 onClick={() => {
                                   ToggleLike(0);
                                 }}
-                                className="ml-4 cursor-pointer text-2xl text-red-500"
+                                className="ml-4 cursor-pointer text-2xl text-green-700"
                               />
                             ) : (
                               <BiLike
