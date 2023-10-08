@@ -6,7 +6,9 @@ This is the offical documentation for a simple blogging platform project built u
 ![Image simple-blog-one](public/images/simple-blog-2.png)
 
 ## URL
+
 https://micro-blog-khaki.vercel.app/
+
 ## Built with
 
 - ⚡️ Next.js 13
@@ -30,7 +32,7 @@ This project implements the following features:
 - 💎 API Integration: React Query is used for data fetching, caching, and state management. Firebase Firestore is used as a backend service for data storage and retrieval.
 - 💎 State Management: React Redux is used as a state management library to manage the application’s state (e.g., current user, current articles, etc.).
 - 💎 Basic Styling: Tailwind CSS is used as a UI framework to style the components. The UI is clean and responsive.
-- 💎Bonus Features: Comments functionality where users can comment on articles. 
+- 💎Bonus Features: Comments functionality where users can comment on articles.
 
 ## Getting Started
 

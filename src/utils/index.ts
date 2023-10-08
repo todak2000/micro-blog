@@ -5,10 +5,10 @@ export const getFirst150Chars = (
   text: string,
   length: number = 150
 ): string => {
-  if (text.length <= length) {
+  if (text?.length <= length) {
     return text;
   } else {
-    return text.substring(0, length) + "...";
+    return text?.substring(0, length) + "...";
   }
 };
 
@@ -33,7 +33,7 @@ export const generateRandomCharacters = (length = 24) => {
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   const randomCharacters = [];
   for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
+    const randomIndex = Math.floor(Math.random() * characters?.length);
     const randomCharacter = characters[randomIndex];
     randomCharacters.push(randomCharacter);
   }

@@ -87,14 +87,12 @@ const Header: React.FC = () => {
             text: "Logout successfully!",
             icon: "success",
           });
-        }
-        else {
+        } else {
           Swal.fire("Oops an error occured", "", "info");
         }
       }
     });
   };
-
 
   const handleGoogle = async () => {
     setLoading(true);

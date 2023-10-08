@@ -2,7 +2,14 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { provider, auth, db } from "@/firebase";
 import { generateRandomCharacters } from "@/utils";
 import { dateFormaterString } from "@/utils";
-import { doc, setDoc, deleteDoc, arrayUnion } from "@firebase/firestore";
+import {
+  doc,
+  setDoc,
+  deleteDoc,
+  arrayUnion,
+  increment,
+  arrayRemove,
+} from "@firebase/firestore";
 
 // Google Auth API
 export const handleGoogleAuth = async (): Promise<
@@ -68,6 +75,8 @@ export const handleNewArticle = async (
       createdAt: dateFormaterString(new Date().toString()),
       category: data.category,
       author: data.author,
+      views: increment(0),
+      likes: [],
       authorId: data.authorId,
       comments: [],
     };
@@ -106,6 +115,105 @@ export const handleEditArticle = async (
       category: data.category,
     };
     const res = await setDoc(articleRef, editedArticle, { merge: true });
+    return {
+      statusCode: 200,
+    };
+  } catch (err: any) {
+    return {
+      statusCode: 405,
+      message: err?.message,
+    };
+  }
+};
+
+// View Article Count API
+export const handleViewArticle = async (
+  id: string
+): Promise<
+  | {
+      statusCode: number;
+    }
+  | {
+      statusCode: number;
+      message: string;
+    }
+  | any
+> => {
+  try {
+    const viewRef = doc(db, "Articles", id);
+    const res = await setDoc(
+      viewRef,
+      {
+        views: increment(1),
+      },
+      { merge: true }
+    );
+    return {
+      statusCode: 200,
+    };
+  } catch (err: any) {
+    return {
+      statusCode: 405,
+      message: err?.message,
+    };
+  }
+};
+
+// Like Article API
+export const handleLikeArticle = async (
+  data: any
+): Promise<
+  | {
+      statusCode: number;
+    }
+  | {
+      statusCode: number;
+      message: string;
+    }
+  | any
+> => {
+  try {
+    const likeRef = doc(db, "Articles", data.id);
+    const res = await setDoc(
+      likeRef,
+      {
+        likes: arrayUnion(data.user),
+      },
+      { merge: true }
+    );
+    return {
+      statusCode: 200,
+    };
+  } catch (err: any) {
+    return {
+      statusCode: 405,
+      message: err?.message,
+    };
+  }
+};
+
+// Remove Like Article API
+export const handleDislikeArticle = async (
+  data: any
+): Promise<
+  | {
+      statusCode: number;
+    }
+  | {
+      statusCode: number;
+      message: string;
+    }
+  | any
+> => {
+  try {
+    const dislikeRef = doc(db, "Articles", data.id);
+    const res = await setDoc(
+      dislikeRef,
+      {
+        likes: arrayRemove(data.user),
+      },
+      { merge: true }
+    );
     return {
       statusCode: 200,
     };

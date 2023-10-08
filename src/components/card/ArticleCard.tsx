@@ -74,7 +74,7 @@ const ArticleCard = ({
           {author === user.name ? (
             <span className="flex flex-row items-center justify-between">
               <ButtonLink
-                className="mr-6 md:mr-0 cursor-pointer border border-transparent"
+                className="mr-6 cursor-pointer border border-transparent md:mr-0"
                 href={`/edit/${id}`}
                 variant="light"
               >
@@ -85,7 +85,7 @@ const ArticleCard = ({
                 className="cursor-pointer text-2xl text-red-500"
               />
             </span>
-          ) : null }
+          ) : null}
         </p>
       </div>
       <p className="px-3 text-[12px] font-black leading-[12px] md:text-[16px] md:leading-[7px]">

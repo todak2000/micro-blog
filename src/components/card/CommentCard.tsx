@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { CommentButtonText } from "@/constant";
 import { dateFormaterString } from "@/utils";
 import { MdOutlineSend } from "react-icons/md";
@@ -11,64 +11,69 @@ import Button from "../buttons/Button";
 import { handleAddComment } from "@/pages/api";
 
 const CommentCard = () => {
-  const [comment, setComment] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
+  const [comment, setComment] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const user = useSelector((state: any) => state.user);
 
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
-  
-  const handleComment = async() => {
-    setLoading(true)
+
+  const handleComment = async () => {
+    setLoading(true);
     const apiData: any = {
-      id:id,
+      id: id,
       sender: user.name,
       senderId: user.uid,
       senderPhoto: user.photo,
       comment: comment,
-    }
+    };
     const payload: any = {
-      articleId:id,
+      articleId: id,
       comment: {
         sender: user.name,
         senderId: user.uid,
         senderPhoto: user.photo,
-        comment: comment, 
+        comment: comment,
         timestamp: dateFormaterString(new Date().toString()),
-      }
-    }
-    const res = await handleAddComment(apiData)
+      },
+    };
+    const res = await handleAddComment(apiData);
     dispatch(addCommentToArticle(payload));
-    setLoading(false)
+    setLoading(false);
     if (res.statusCode !== 200) {
       dispatch(removeCommentFromArticle(payload));
-    }else{
-      setComment('')
+    } else {
+      setComment("");
     }
-     
   };
 
   const updateComment = (text: any) => {
-    setComment(text)
+    setComment(text);
   };
 
   return (
-    <div className="border p-2 border-gray-200 outline-none mt-3 rounded-lg w-full flex flex-col md:flex-row md:justify-between md:items-center items-end">
+    <div className="mt-3 flex w-full flex-col items-end rounded-lg border border-gray-200 p-2 outline-none md:flex-row md:items-center md:justify-between">
       <Image
         src={user?.photo}
         alt="google logo"
         width={35}
         height={35}
-        className="hidden md:flex rounded-full"
+        className="hidden rounded-full md:flex"
       />
-      <textarea onChange={(e) => updateComment(e.target.value as string)} name="text" value={comment} placeholder="What do you think?" className="w-full rounded-sm border border-white h-[70px] text-[14px] leading-[16px]" />
+      <textarea
+        onChange={(e) => updateComment(e.target.value as string)}
+        name="text"
+        value={comment}
+        placeholder="What do you think?"
+        className="h-[70px] w-full rounded-sm border border-white text-[14px] leading-[16px]"
+      />
       <Button
         variant="primary"
         className="mt-3 md:mt-1"
         isLoading={loading}
         type="submit"
-        disabled={comment=== ""}
+        disabled={comment === ""}
         onClick={comment === "" ? () => null : handleComment}
       >
         <MdOutlineSend />

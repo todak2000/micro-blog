@@ -1,4 +1,3 @@
-// firebaseQueries.js
 import {
   query,
   collection,

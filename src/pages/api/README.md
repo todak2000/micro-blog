@@ -13,6 +13,7 @@ Provided you follow the instructions [here](README.md): `README.md`. you have no
 ## Features Endpoints
 
 This project implements the following features endpoints:
+
 ### Google Authentication (Signup/SignIn)
 
 **handleGoogleAuth()**
@@ -62,6 +63,7 @@ Create : Authenticated Users can create articles. Each article has a title, cont
       category: string,
       author: string,
       authorId: string,
+      comments: [],
   }
 
 ```
@@ -82,6 +84,9 @@ A promise that resolves with the following object:
         category: string;
         author: string;
         authorId: string;
+        views: number;
+        likes: string[];
+        comments: []
       };
   }
   <!-- OR -->
@@ -139,7 +144,7 @@ A promise that resolves with the following object:
 
 **Description:**
 
-Update : The `handleAddComment` endpoint allow Authenticated users to comment on an article - own or otherwise. 
+Update : The `handleAddComment` endpoint allow Authenticated users to comment on an article - own or otherwise.
 
 **Parameters:**
 
@@ -152,6 +157,90 @@ Update : The `handleAddComment` endpoint allow Authenticated users to comment on
     comment: string,
 }
 ```
+
+**Returns:**
+
+A promise that resolves with the following object:
+
+```
+  {
+    statusCode: number;
+    message: string;
+  }
+```
+
+## View Article Count
+
+**handleViewArticle()**
+
+**Description:**
+
+Update : The `handleViewArticle` endpoint allow for updates on the number of views the article has gathered. Every time an article is opened, the view count is increased.
+
+**Parameters:**
+
+```
+{
+    id:string, // article ID
+}
+```
+
+**Returns:**
+
+A promise that resolves with the following object:
+
+```
+  {
+    statusCode: number;
+    message: string;
+  }
+```
+
+## Like an Article
+
+**handleLikeArticle()**
+
+**Description:**
+
+Update : The `handleLikeArticle` endpoint allow Authenticated users to like an article - own or otherwise.
+
+**Parameters:**
+
+```
+{
+    id:string, // article ID
+    user: string // user ID
+}
+```
+
+**Returns:**
+
+A promise that resolves with the following object:
+
+```
+  {
+    statusCode: number;
+    message: string;
+  }
+```
+
+## Dislike an Article
+
+**handleDislikeArticle()**
+
+**Description:**
+
+Update : The `handleDislikeArticle` endpoint allow Authenticated users to dislike/remove their like for an article - own or otherwise.
+
+**Parameters:**
+
+```
+{
+    id:string, // article ID
+    user: string // user ID
+}
+```
+
 **Returns:**
 
 A promise that resolves with the following object:

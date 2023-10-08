@@ -38,6 +38,49 @@ const articlesSlice = createSlice({
         );
       }
     },
+    countArticleView: (state: any, action: any) => {
+      const article = state.data.find(
+        (d: any) => d.id === action.payload.articleId
+      );
+      if (article) {
+        if (!article.views) {
+          article.views = 0;
+        }
+        article.views += 1;
+      }
+    },
+    reverseCountArticleView: (state: any, action: any) => {
+      const article = state.data.find(
+        (d: any) => d.id === action.payload.articleId
+      );
+      if (article) {
+        if (!article.views) {
+          article.views = 0;
+        }
+        article.views -= 1;
+      }
+    },
+    likeArticle: (state: any, action: any) => {
+      const article = state.data.find(
+        (d: any) => d.id === action.payload.articleId
+      );
+      if (article) {
+        if (!article.likes) {
+          article.likes = [];
+        }
+        article.likes.push(action.payload.user);
+      }
+    },
+    dislikeArticle: (state: any, action: any) => {
+      const article = state.data.find(
+        (d: any) => d.id === action.payload.articleId
+      );
+      if (article && article.likes) {
+        article.likes = article.likes.filter(
+          (c: string) => c !== action.payload.user
+        );
+      }
+    },
   },
 });
 
@@ -85,6 +128,10 @@ export const {
   removeArticle,
   addCommentToArticle,
   removeCommentFromArticle,
+  countArticleView,
+  reverseCountArticleView,
+  likeArticle,
+  dislikeArticle,
 } = articlesSlice.actions;
 export const { nextPage, prevPage } = pageSlice.actions;
 export const { setUser, clearUser } = userSlice.actions;
