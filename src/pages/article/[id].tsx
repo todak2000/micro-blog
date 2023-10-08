@@ -5,8 +5,7 @@ import Layout from "@/components/layout/Layout";
 import CommentCard from "@/components/card/CommentCard";
 import Swal from "sweetalert2";
 import Seo from "@/components/Seo";
-import { getArticles } from "@/store";
-import {FaShareAlt} from 'react-icons/fa'
+import { FaShareAlt } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineFundView } from "react-icons/ai";
@@ -32,11 +31,12 @@ import ButtonLink from "@/components/links/ButtonLink";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useArticles } from "@/utils/hook";
+import { useArticle } from "@/utils/hook";
 import { ImSpinner2 } from "react-icons/im";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import FeedbackCard from "@/components/card/FeedbackCard";
 import { NoCommentText } from "@/constant";
+import { getSessionStorage, setSessionStorage } from "@/utils";
 
 type ArticleProps = {
   id: string;
@@ -52,19 +52,19 @@ type ArticleProps = {
 
 function ArticlePage() {
   const router = useRouter();
+  const { id } = router.query;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const [isShare, setIsShare] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleProps>();
   const articles = useSelector((state: any) => state.articles);
   const user = useSelector((state: any) => state.user);
-  const { data, isLoading, isError, error } = useArticles();
+  let storedId = getSessionStorage("articleId");
+  const { data }: any = useArticle(storedId || (id as string));
 
-  const { id } = router.query;
-
-  const ToggleShare =()=>{
-    setIsShare(!isShare)
-  }
+  const ToggleShare = () => {
+    setIsShare(!isShare);
+  };
   const promtDelete = (id: any) => {
     Swal.fire({
       title: "Do you want to Delete this Article",
@@ -91,15 +91,11 @@ function ArticlePage() {
   };
 
   const loadData = () => {
-    let payload: any;
+    setLoading(true);
     if (data && data?.length > 0) {
-      payload = { data, isLoading, isError, error };
-      setArticle(
-        payload.data.filter((article: ArticleProps) => article.id === id)[0]
-      );
+      setArticle(data.filter((article: ArticleProps) => article.id === id)[0]);
       setLoading(false);
     }
-    dispatch(getArticles(payload));
   };
 
   const ToggleLike = async (num: number) => {
@@ -135,13 +131,17 @@ function ArticlePage() {
     if (res.statusCode !== 200) {
       dispatch(reverseCountArticleView(payload));
     }
+    setLoading(false);
   };
   useEffect(() => {
+    setLoading(true);
+    setSessionStorage("articleId", id as string);
     const pathnames = router.asPath.split("/");
     const check = pathnames.slice(-1);
     if (check[0] !== "[id]") {
       CountView();
     }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -153,8 +153,9 @@ function ArticlePage() {
       setLoading(false);
     } else {
       loadData();
+      setLoading(false);
     }
-  }, [data, articles]);
+  }, [data, articles, id]);
   return (
     <Layout>
       <Seo />
@@ -162,9 +163,9 @@ function ArticlePage() {
       <main>
         <section className="bg-main min-h-screen">
           <Header />
-          {loading ? (
-            <div className="flex h-12 w-full flex-col items-center justify-center">
-              <ImSpinner2 className="animate-spin" />{" "}
+          {typeof id === "undefined" || !article || article?.title === "" ? (
+            <div className="flex h-[40vh] w-full flex-col items-center justify-center">
+              <ImSpinner2 className="animate-spin" />
             </div>
           ) : (
             <>
@@ -204,8 +205,11 @@ function ArticlePage() {
                       <span className=" ml-1 text-[10px] font-bold text-gray-400">
                         {article?.views || 0}
                       </span>
-                      <FaShareAlt onClick={ToggleShare} className="ml-4 text-xl cursor-pointer text-gray-300" />
-   
+                      <FaShareAlt
+                        onClick={ToggleShare}
+                        className="ml-4 cursor-pointer text-xl text-gray-300"
+                      />
+
                       {article?.likes?.includes(user.uid) ? (
                         <AiFillLike
                           onClick={() => {
@@ -221,7 +225,7 @@ function ArticlePage() {
                           className="ml-4 cursor-pointer text-2xl text-gray-300"
                         />
                       )}
-                    
+
                       <span className=" ml-1 text-[10px] font-bold text-gray-400">
                         {article?.likes?.length || 0}
                       </span>
@@ -243,8 +247,11 @@ function ArticlePage() {
                         <span className=" ml-1 text-[10px] font-bold text-gray-400">
                           {article?.views || 0}
                         </span>
-                        <FaShareAlt onClick={ToggleShare} className="ml-4 text-xl cursor-pointer text-gray-300" />
-                        
+                        <FaShareAlt
+                          onClick={ToggleShare}
+                          className="ml-4 cursor-pointer text-xl text-gray-300"
+                        />
+
                         {user.name !== "" ? (
                           <>
                             {article?.likes?.includes(user.uid) ? (
@@ -290,11 +297,14 @@ function ArticlePage() {
               </div>
             </>
           )}
-          {isShare &&
-          <div className="bg-green-100 absolute top-[45%] right-0 grid grid-rows-3 gap-4 p-6 rounded-l-lg">
-          <Share title={article?.title as string} articleId={id as string} />
-        </div>
-          }
+          {isShare && (
+            <div className="absolute top-[45%] right-0 grid grid-rows-3 gap-4 rounded-l-lg bg-green-100 p-6">
+              <Share
+                title={article?.title as string}
+                articleId={id as string}
+              />
+            </div>
+          )}
         </section>
         <Footer />
       </main>

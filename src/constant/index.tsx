@@ -1,5 +1,5 @@
 export const LandingPageHeader = "Simple Blogging Platform";
-export const SocialMediaUrl = 'https://micro-blog-khaki.vercel.app/article'
+export const SocialMediaUrl = "https://micro-blog-khaki.vercel.app/article";
 export const LandingPageText =
   "A simple blogging platform using Next.js, React, TypeScript, Redux, React Query, TailwindCss. The platform is user-friendly, and the code well-organized and documented.";
 export const LandingPageLinkText = "See the repository";
@@ -12,7 +12,7 @@ export const LogoText = "Daniel's Blog";
 export const FormButtonText = "Submit";
 export const CreateArticleText = "Create Article";
 export const EditArticleText = "Edit Article";
-export const NewArticleText = "New Article";
+export const NewArticleText = "Create Article";
 export const SignInText = "Sign in with Google";
 export const SignInTextMobile = "Sign in";
 export const SignOutText = "Sign out";

@@ -78,7 +78,10 @@ const Articles: React.FC = () => {
       )}
       <div className="h-[60vh] grid-cols-1 overflow-auto md:grid md:grid-cols-3 md:gap-4">
         {articles?.isLoading ? (
-          <div className="absolute top-1/2 left-1/2 mt-10 -translate-x-1/2 -translate-y-1/2">
+          //   <div className="flex flex-col items-center justify-center h-[40vh] w-full">
+          //   <ImSpinner2 className="animate-spin" />
+          // </div>
+          <div className="absolute top-1/2 left-1/2 mt-[40vh] -translate-x-1/2 -translate-y-1/2 ">
             <ImSpinner2 className="animate-spin" />
           </div>
         ) : (

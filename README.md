@@ -33,11 +33,11 @@ This project implements the following features:
 - 💎 API Integration: React Query is used for data fetching, caching, and state management. Firebase Firestore is used as a backend service for data storage and retrieval.
 - 💎 State Management: React Redux is used as a state management library to manage the application’s state (e.g., current user, current articles, etc.).
 - 💎 Basic Styling: Tailwind CSS is used as a UI framework to style the components. The UI is clean and responsive.
-- 💎Bonus Features: 
- - Comments functionality where users can comment on articles.
- - Authenticated users can like or unlike an article. While unauthenicated users can view likes only
- - Users can see number of views an article has
- - Users can share artilce on Social Media (Facebook, Twitter and Whatsapp)
+- 💎Bonus Features:
+- Comments functionality where users can comment on articles.
+- Authenticated users can like or unlike an article. While unauthenicated users can view likes only
+- Users can see number of views an article has
+- Users can share artilce on Social Media (Facebook, Twitter and Whatsapp)
 
 ## Getting Started
 

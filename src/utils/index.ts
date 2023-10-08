@@ -39,3 +39,17 @@ export const generateRandomCharacters = (length = 24) => {
   }
   return randomCharacters.join("");
 };
+
+// store session data
+export const setSessionStorage = (key: string, newValue: string) => {
+  if (typeof window !== "undefined") {
+    window.sessionStorage.setItem(key, newValue);
+  }
+};
+
+// retrieve session data
+export const getSessionStorage = (key: string) => {
+  if (typeof window !== "undefined") {
+    return window.sessionStorage.getItem(key);
+  }
+};

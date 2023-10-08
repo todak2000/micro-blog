@@ -2,14 +2,11 @@ import React from "react";
 import { getFirst150Chars } from "@/utils";
 import { FaRegImage } from "react-icons/fa";
 import ButtonLink from "../links/ButtonLink";
+import { HiBadgeCheck } from "react-icons/hi";
+import Image from "next/image";
 import parse from "html-react-parser";
 import { CardButtonLinkText } from "@/constant";
-import { useRouter } from "next/router";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { handleDeleteArticle } from "@/pages/api";
-import Swal from "sweetalert2";
-import { removeArticle } from "@/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 type CardItem = {
   id: string;
@@ -33,57 +30,33 @@ const ArticleCard = ({
   authorId,
 }: CardItem) => {
   const user = useSelector((state: any) => state.user);
-  const router = useRouter();
-  const dispatch = useDispatch();
 
-  // function to prompt the user for deleting an article
-  const promtDelete = (id: any) => {
-    Swal.fire({
-      title: "Do you want to Delete this Article",
-      showDenyButton: true,
-      confirmButtonText: "Yes",
-      denyButtonText: `No`,
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        await handleDeleteArticle(id).then((res: any) => {
-          dispatch(removeArticle(id));
-          if (res?.statusCode === 200) {
-            router.push("/");
-            Swal.fire({
-              title: "Success!",
-              text: "Article successfully deleted",
-              icon: "success",
-            });
-          } else {
-            Swal.fire("Oops an error occured", "", "info");
-          }
-        });
-      }
-    });
-  };
   return (
     <div className="relative mb-3 h-[350px] rounded-lg md:w-[1/3]">
       <div className="flex h-[150px] flex-col items-center justify-center rounded-lg bg-gray-100 md:w-[100%]">
         <FaRegImage className="text-6xl" />
       </div>
       <div className="flex flex-row items-center justify-between p-3">
-        <p className="header-text text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[18px]">
-          {author}
-        </p>
-        <p className="header-text text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[16px]">
+        <p className="flex flex-row items-center justify-between text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[18px]">
           {author === user.name ? (
             <span className="flex flex-row items-center justify-between">
-              <ButtonLink
-                className="mr-6 cursor-pointer border border-transparent md:mr-0"
-                href={`/edit/${id}`}
-                variant="light"
-              >
-                <AiFillEdit className=" cursor-pointer text-2xl text-yellow-500" />
-              </ButtonLink>
-              <AiFillDelete
-                onClick={() => promtDelete(id)}
-                className="cursor-pointer text-2xl text-red-500"
+              <Image
+                src={user.photo}
+                alt="user picture"
+                width={25}
+                height={25}
+                className="mr-2 rounded-full"
               />
+            </span>
+          ) : null}
+
+          {author}
+        </p>
+        <p className="flex flex-row items-center justify-between text-[10px] font-normal leading-[12px] md:text-[14px] md:leading-[16px]">
+          {author === user.name ? (
+            <span className="flex flex-row items-center justify-between">
+              <HiBadgeCheck size={15} className="mr-1 text-green-600" />
+              Owner
             </span>
           ) : null}
         </p>
